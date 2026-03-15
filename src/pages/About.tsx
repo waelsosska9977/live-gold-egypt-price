@@ -2,33 +2,33 @@ import React from 'react';
 
 export const About: React.FC = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 text-center">About <span className="gold-text-gradient">Egypt Price Gold</span></h1>
+    <div className="max-w-4xl mx-auto px-4 py-12" dir="rtl">
+      <h1 className="text-4xl font-bold mb-8 text-center">من <span className="gold-text-gradient">نحن</span></h1>
       
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 space-y-6 text-zinc-400 leading-relaxed">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 space-y-6 text-zinc-400 leading-relaxed text-right">
         <p>
-          Welcome to <span className="text-gold-400 font-semibold">Egypt Price Gold</span>, your premier destination for real-time gold prices and currency exchange rates in the Egyptian market.
+          مرحباً بكم في <span className="text-gold-400 font-semibold">سعر الذهب في مصر</span>، وجهتكم الأولى لمتابعة أسعار الذهب وأسعار صرف العملات في السوق المصري لحظة بلحظة.
         </p>
         
         <p>
-          In an ever-changing economic landscape, having access to accurate, up-to-the-minute data is crucial for making informed financial decisions. Whether you're an investor, a jeweler, or someone looking to buy gold for personal reasons, our platform provides the tools and information you need.
+          في ظل المشهد الاقتصادي المتغير باستمرار، يعد الحصول على بيانات دقيقة ومحدثة أمراً حيوياً لاتخاذ قرارات مالية مدروسة. سواء كنت مستثمراً، أو صائغاً، أو شخصاً يتطلع لشراء الذهب لأغراض شخصية، فإن منصتنا توفر لك الأدوات والمعلومات التي تحتاجها.
         </p>
 
-        <h2 className="text-2xl font-bold text-zinc-100 mt-8 mb-4">Our Mission</h2>
+        <h2 className="text-2xl font-bold text-zinc-100 mt-8 mb-4">مهمتنا</h2>
         <p>
-          Our mission is to provide transparency and accessibility to market data for all Egyptians. We believe that everyone should have access to the same high-quality information used by professionals.
+          مهمتنا هي توفير الشفافية وسهولة الوصول إلى بيانات السوق لجميع المصريين. نحن نؤمن بأن الجميع يجب أن يحصلوا على نفس المعلومات عالية الجودة التي يستخدمها المحترفون.
         </p>
 
-        <h2 className="text-2xl font-bold text-zinc-100 mt-8 mb-4">Why Choose Us?</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li><span className="text-zinc-100 font-medium">Real-Time Updates:</span> Our prices are updated every 60 seconds from global and local sources.</li>
-          <li><span className="text-zinc-100 font-medium">Comprehensive Data:</span> We cover 24K, 21K, 18K gold, and the Gold Pound, along with USD/EGP rates.</li>
-          <li><span className="text-zinc-100 font-medium">User-Friendly Tools:</span> Our gold calculator and interactive charts make analysis simple.</li>
-          <li><span className="text-zinc-100 font-medium">Expert Insights:</span> Our articles section provides context and tips for the local market.</li>
+        <h2 className="text-2xl font-bold text-zinc-100 mt-8 mb-4">لماذا تختارنا؟</h2>
+        <ul className="list-disc pr-6 space-y-2">
+          <li><span className="text-zinc-100 font-medium">تحديثات لحظية:</span> يتم تحديث أسعارنا كل 60 ثانية من مصادر عالمية ومحلية موثوقة.</li>
+          <li><span className="text-zinc-100 font-medium">بيانات شاملة:</span> نغطي عيار 24، 21، 18، والجنيه الذهب، بالإضافة إلى أسعار الدولار مقابل الجنيه.</li>
+          <li><span className="text-zinc-100 font-medium">أدوات سهلة الاستخدام:</span> حاسبة الذهب والرسوم البيانية التفاعلية تجعل التحليل بسيطاً للجميع.</li>
+          <li><span className="text-zinc-100 font-medium">مقالات الخبراء:</span> يوفر قسم المقالات لدينا سياقاً ونصائح قيمة للسوق المحلي.</li>
         </ul>
 
         <p className="mt-8">
-          Thank you for choosing Egypt Price Gold. We are committed to being your most trusted financial data partner in Egypt.
+          شكراً لاختياركم "سعر الذهب في مصر". نحن ملتزمون بأن نكون شريككم الأكثر ثقة في بيانات السوق المالية في مصر.
         </p>
       </div>
     </div>

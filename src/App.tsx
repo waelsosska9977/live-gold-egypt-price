@@ -10,6 +10,7 @@ import { Contact } from './pages/Contact';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
 import { ArticleDetail } from './pages/ArticleDetail';
+import { AdminArticles } from './pages/AdminArticles';
 import { motion } from 'motion/react';
 import { FirebaseProvider } from './context/FirebaseContext';
 
@@ -36,6 +37,7 @@ export default function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
+                <Route path="/admin/articles" element={<AdminArticles />} />
               </Routes>
             </motion.div>
           </main>

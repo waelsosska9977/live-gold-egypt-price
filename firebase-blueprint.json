@@ -27,6 +27,23 @@
         "createdAt": { "type": "string", "format": "date-time", "description": "Subscription creation timestamp" }
       },
       "required": ["userId", "karat", "targetPrice", "condition"]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "Blog article content",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "category": { "type": "string" },
+        "author": { "type": "string" },
+        "image": { "type": "string" },
+        "slug": { "type": "string" },
+        "date": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "slug"]
     }
   },
   "firestore": {
@@ -37,6 +54,10 @@
     "/subscriptions/{subscriptionId}": {
       "schema": "Subscription",
       "description": "Price alert subscription documents"
+    },
+    "/articles/{articleId}": {
+      "schema": "Article",
+      "description": "Blog article documents"
     }
   }
 }

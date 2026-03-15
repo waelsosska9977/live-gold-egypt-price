@@ -37,7 +37,7 @@ export const GoldPriceCard: React.FC<GoldPriceCardProps> = ({ karat, price, unit
           <span className="text-3xl font-bold text-zinc-100">
             {price > 0 ? Math.round(price).toLocaleString('ar-EG') : '---'}
           </span>
-          <span className="text-zinc-500 text-sm">{unit === 'EGP / Gram' ? 'ج.م / جرام' : 'ج.م / قطعة'}</span>
+          <span className="text-zinc-500 text-sm">{unit === 'EGP / Gram' ? 'جنية / جرام' : 'جنية / قطعة'}</span>
         </div>
       )}
       
