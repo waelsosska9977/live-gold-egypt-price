@@ -1,6 +1,7 @@
 import React from 'react';
 import { PriceChart } from '../components/PriceChart';
 import { AdSpace } from '../components/AdSpace';
+import { SubscriptionSection } from '../components/SubscriptionSection';
 import { TrendingUp, TrendingDown, Info } from 'lucide-react';
 
 export const ChartPage: React.FC = () => {
@@ -14,6 +15,8 @@ export const ChartPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-3 space-y-8">
           <PriceChart />
+          
+          <SubscriptionSection />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">

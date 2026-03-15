@@ -1,0 +1,103 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: users
+// Document ID: {userId} (matches Auth UID)
+// Fields:
+//   - uid: string (required) - Auth UID
+//   - email: string (required) - User email
+//   - displayName: string (optional)
+//   - photoURL: string (optional)
+//   - createdAt: timestamp (optional)
+//   - lastLogin: timestamp (optional)
+//
+// Collection: subscriptions
+// Document ID: {subscriptionId} (auto-generated)
+// Fields:
+//   - userId: string (required) - Owner UID
+//   - karat: string (required) - "24", "21", or "18"
+//   - targetPrice: number (required) - Price threshold
+//   - condition: string (required) - "above" or "below"
+//   - active: bool (required)
+//   - createdAt: timestamp (required)
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "waelsosska9977@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email']) &&
+             data.uid == request.auth.uid &&
+             isValidEmail(data.email) &&
+             (data.get('displayName', '') is string) &&
+             (data.get('photoURL', '') is string);
+    }
+
+    function isValidSubscription(data) {
+      return data.keys().hasAll(['userId', 'karat', 'targetPrice', 'condition', 'active', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.karat in ['24', '21', '18'] &&
+             data.targetPrice is number && data.targetPrice > 0 &&
+             data.condition in ['above', 'below'] &&
+             data.active is bool &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && 
+                    request.resource.data.uid == resource.data.uid; // uid immutable
+    }
+
+    match /subscriptions/{subscriptionId} {
+      allow read: if isDocOwner() || isAdmin();
+      allow create: if isAuthenticated() && isValidSubscription(request.resource.data);
+      allow update: if isDocOwner() && isValidSubscription(request.resource.data) &&
+                    request.resource.data.userId == resource.data.userId; // owner immutable
+      allow delete: if isDocOwner() || isAdmin();
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
